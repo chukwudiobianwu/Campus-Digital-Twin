@@ -3,15 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>ArcGIS Developers Guide: Display a map (2D)</title>
+  <title>UVIC Campus Digital Twin(2D)</title>
   <style>
     html,
-    body,
-    #viewDiv {
-      padding: 0;
-      margin: 0;
+    body {
       height: 100%;
-      width: 100%;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(brown 2%, white 100%);
+    }
+
+    #viewDiv {
+      margin-top: 100px;
+      height: 70%;
+    }
+
+    #textContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    #title {
+      margin-bottom: 10px;
+    }
+
+    #textarea {
+      resize: none;
     }
   </style>
 
@@ -22,7 +42,12 @@
 </head>
 
 <body>
+  <p>Campus</p>
   <div id="viewDiv"></div>
-</body>
+  <div id="textContainer">
+    <p id="title">Report Issue Found</p>
+    <textarea id="textarea" rows="20" cols="50"></textarea>
+  </div>
+</body> 
 
 </html>
