@@ -1,0 +1,132 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>UVIC Campus Digital Twin(2D)</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://www.uvic.ca/assets/template3-4/images/graphics/logos/uvic-social-default.gif');
+    }
+  
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 90%;
+    }
+  
+    #viewDiv {
+      margin-top: 20px;
+      height: 75%; /* Adjust height as needed */
+      width: 100%;
+    }
+  
+    #Head {
+      font-size: 50px;
+      font-style: italic;
+      margin: 0 auto;
+      color: white;
+      text-shadow: 0px 0px 10px black;
+    }
+  
+    #formContainer {
+      margin-top: 10px;
+      width: 500px;
+      margin: 0 auto;
+      
+    }
+
+
+    @keyframes increaseWidth {
+      from { width: 300px; }
+      to { width: 400px; }
+    }
+
+    #description{
+      resize: none;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center form items horizontally */
+      background-color: silver;
+      padding: 20px;
+      border: 2px solid black;
+    }
+  
+    label {
+      margin-bottom: 5px;
+    }
+  
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    input[type="submit"]:hover {
+      background-color: blue;
+    }
+
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.19/"></script>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+  <div id="container">
+    <p id="Head">Building Status View</p>
+    <div id="viewDiv"></div>
+  </div>
+    <div id="formContainer">
+      <form method="POST" action= "/submit_issue">
+        <p>Report Issue</p>
+        <label for="building">Building Name:</label>
+        <input placeholder = "Select a building from the Scene above" type="text" id="buildingName" name="building" required>
+
+        <label for="issue">Type of Issue:</label>
+        <input placeholder = "E.g Leakage?, damaged floor?..." type="text" id="issue" name="issue" required>
+
+        <label for="description">Description:</label>
+        <textarea placeholder = "Brief desc of the problem including building level, near objects" id="description" name="description" rows="4" required></textarea>
+
+        <label for="urgency">Urgency Level:</label>
+        <select id="urgency" name="urgency" required>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <label for="contact">Uvic Contact Email:</label>
+        <input placeholder = "Enter your uvic student email" type="text" id="contact" name="contact" required>
+
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+</body> 
+
+</html>
