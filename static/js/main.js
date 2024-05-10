@@ -64,6 +64,64 @@ require([
     });
 });
 
+
+
+// Function to update status when form is submitted
+webscene.when(function() {
+  let sceneLayer;
+
+  // Find the scene layer in the WebScene
+  webscene.allLayers.forEach(function(layer) {
+      if (layer.title === "Buildings") { // Adjust the title accordingly
+          // Assign the scene layer to the sceneLayer variable
+          console.log("true")
+          sceneLayer = layer;
+      }
+  });
+
+  // Check if sceneLayer is defined
+  if (sceneLayer) {
+    console.log(sceneLayer)
+      // Now you can use sceneLayer to query and update features
+
+      // Function to update status when form is submitted
+// Function to update status when form is submitted
+document.getElementById("statusForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the building name and new status from the form
+    const buildingName = document.getElementById("buildingName").value;
+    const newStatus = document.getElementById("status").value;
+
+    console.log("Building name:", buildingName);
+    console.log("New status:", newStatus);
+
+    // Apply edits to update the status attribute of the building
+    sceneLayer.applyEdits({
+        updateFeatures: [{
+            attributes: {
+                name: buildingName,
+                Status: newStatus
+            }
+        }]
+    }).then((editsResult) => {
+        console.log("Edits applied successfully:", editsResult);
+        // Optionally, you can provide feedback to the user that the update was successful
+        alert("Status updated successfully!");
+    }).catch((error) => {
+        console.error("Error applying edits:", error);
+        // Provide feedback to the user about the error
+        alert("Error updating status. Please try again later.");
+    });
+});
+
+  } else {
+      console.error("Scene layer not found in the WebScene");
+  }
+});
+
+
+
 fetch('/get_issues')
   .then(response => response.json())
   .then(data => {
